@@ -115,8 +115,8 @@ $co =0;
  
  //test values
  
- $MyData->addPoints(array(50, 60, 70), 'l');	
- $MyData->addPoints(array(10, 19, 15), 'w');	
+ $MyData->addPoints(array(50, 60, ), 'l');	
+ $MyData->addPoints(array(10, 19,), 'w');	
  
  $MyData->setScatterSerie('l', 'w', 114); 
  $MyData->setSerieOnAxis("w", 1);
