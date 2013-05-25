@@ -1,4 +1,6 @@
 jQuery(document).ready(function($){
+    $('#birthdate').datepicker();
+    //alert('loaded');
     
     //test
     $('#get-due').click(function(e){

@@ -1,29 +1,7 @@
 <?php
 global $wpdb;
-$mem_page  = get_permalink(get_option('wb_mem_dues_page_number'));
-//Add new membership
-if(isset( $_POST['new-submit'] )):
-$key = sanitize_title_with_dashes(trim($_POST['name']));
-$mem_array = get_option('wp_wb_memberships');
+$growth_page  = get_permalink(get_option('wp_growth_page_number'));
 
-if(!array_key_exists($key, $mem_array));
-
-$mem_array[$key]=array(
-	'name' => trim($_POST['name']),
-	'low_fee' => 0,
-	'low_early' => 0,
-	'medium_fee' => 0,
-	'medium_early' => 0,
-	'high_fee' => 0,
-	'high_early' => 0
-
-);
-
-update_option('wp_wb_memberships', $mem_array);
-
-
-
-endif;
 
 // db update
 
@@ -70,6 +48,7 @@ endif;
 
 <div class="wrap">
     <form action ='' method='post'>
+        <h4> <a href="<?php echo $growth_page  ?>" target="_blank"> View the Frontend  </a>  </h4>
         <h4>Earlybird Date </h4>
         <input style="width:20%" id='earlybird_date' type='text' name='earlybird_date' value="<?php echo $earlybird_date ?>"/>
         <br/> 
