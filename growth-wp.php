@@ -59,7 +59,9 @@ class wpGrowthChart {
 	$mem_page = get_option('wp_growth_page_number');
 	if($post->ID != $mem_page)
 		return $content;
-	return include 'front_end.php';
+	$c == include 'front_end.php';
+	
+	return $c;
 
 	
 	}
