@@ -19,7 +19,7 @@ class wpGrowthChart {
     function __construct() {
 
         $this->image_dir = plugins_url('/', __FILE__) . 'images/';
-        $this->csv_dir = plugins_url('/', __FILE__) . 'csv/';
+        $this->csv_dir = WP_PLUGIN_DIR.'/growth/csv/';
        
         //add_action('init', array($this, 'add_post_type'));
         add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
@@ -121,7 +121,38 @@ class wpGrowthChart {
 
 
 
+function list_files($src='cdc'){
+	$files= array();
+	$f = array();
+	if ($handle = opendir($this->csv_dir . "$src/boys")) {
+    while (false !== ($entry = readdir($handle))) {
+        if ($entry != "." && $entry != "..") {
+            $files[] = substr($entry, 0, -4);
+        }
+    }
+    closedir($handle);
+}
 
+foreach($files as $k=> $file):
+	$file = explode('_', $file);
+	$typ=explode('-',$file[0]);
+	$f[$k]['type'][]=$typ[0];	
+	$f[$k]['type'][]=$typ[1];
+		
+	$unit=explode('-',$file[1]);
+	$f[$k]['unit'][]=$unit[0];	
+	$f[$k]['unit'][]=$unit[1];	
+
+	$f[$k]['age_unit']= $file[2];
+
+	$age = explode('-', $file[3] );
+	$f[$k]['age'][]=$age[0];	
+	$f[$k]['age'][]=$age[1];
+endforeach;	
+
+return $f;
+	
+}
 
 
 

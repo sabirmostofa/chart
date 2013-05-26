@@ -18,6 +18,8 @@ $v = array();
 	$more=0;
 	$entries = 4;
 }
+
+$files = $this->list_files();
 	
 ?>
 <form class="cmxform" id="dataForm" method="post" action="">
@@ -40,12 +42,13 @@ $v = array();
 		<p>
 			
 			<input id="birthdate" value="<?php echo $bd  ?>" name="birthdate" type="text" />
-			<label for="birthdate">Birthdate ( yyyy-mm-dd ) recquired if dates rather than ages are used below)</label>
+			<label for="birthdate">Birthdate ( yyyy-mm-dd ) required if dates rather than ages are used below)</label>
 		</p>
 		
 		<!-- All entries -->
 		
 		<div id="entries_container">
+			*At least two entries are required to plot 
 		<!-- Entry 1  -->
 <?php
 
@@ -117,7 +120,30 @@ $v = array();
 		</p>
 		
 			
+		<p> <label> Data Source:</label> 
+		<select name="" id="">
+		<option value="WHO">WHO</option>
+		<option value="CDC">CDC</option>
+		</select> 
+		</p>
+		
+		<p>
+				<label for="">Chart Type:</label>
 			
+			<select name="" id="">
+			<?php
+			foreach ($files as $file):
+			$x = $file['type'][0]; 
+			$y = $file['type'][1]; 
+			 
+			?>
+			<option value="" name ='<?php echo "$x-$y" ?>'> <?php echo "$y for $x"  ?></option>
+			<?php
+			endforeach;
+			?>
+			</select>
+			</p>
+		
 		<p>
 			<input class="submit" name='growth_submit' type="submit" value="Submit"/>
 		</p>
