@@ -1,23 +1,28 @@
 <?php
 //$c=<<<EOD
-if(isset($_POST['growth_submit'])){
+if( isset($_POST['growth_submit']) || isset($_POST['more_submit']) ){
 	var_dump($_POST);
 	$id = $_POST['identifier'];
 	$v = $_POST['data'];
 	$bd =$_POST['birthdate'];;
 	$gd =$_POST['gender'];;
+	$more = (int) $_POST['more_entries'];
+	$entries = count($v)+1;
+
 }
 else {
 $v = array();
 	$id = '';
 	$gd = '';
 	$bd ='';
+	$more=0;
+	$entries = 4;
 }
 	
 ?>
 <form class="cmxform" id="dataForm" method="post" action="">
 	<fieldset>
-		<legend>Validating a complete form</legend>
+		<legend>Child's growth data</legend>
 		<p>
 		<input id="identifier" value="<?php echo $id  ?>" name="identifier" type="text" />
 			<label for="identifier">Child's identifier *( Name/Nickname.. used in the graph title)</label>
@@ -25,7 +30,8 @@ $v = array();
 		</p>
 		<p>
 			
-			<select name="gender" id="">
+			<select class='required' name="gender" >
+				<option value=''>Select a gender</option>
 				<option <?php if($gd == 'm') echo 'selected="selected"' ?> value="m">Male</option>
 				<option <?php if($gd == 'f') echo 'selected="selected"' ?> value="f">Female</option>
 			</select>
@@ -34,20 +40,22 @@ $v = array();
 		<p>
 			
 			<input id="birthdate" value="<?php echo $bd  ?>" name="birthdate" type="text" />
-			<label for="birthdate">Birthdate (recquired if dates rather than ages are used below)</label>
+			<label for="birthdate">Birthdate ( yyyy-mm-dd ) recquired if dates rather than ages are used below)</label>
 		</p>
 		
 		<!-- All entries -->
 		
 		<div id="entries_container">
 		<!-- Entry 1  -->
-<?php for($i=1; $i<4; $i++): ?>		
-			<div class="entries" style="margin-bottom:30px;clear:both">
+<?php
+
+ for($i=1; $i< ($entries+$more); $i++): ?>		
+			<div class="entry" style="margin-bottom:30px;clear:both">
 			<p>Entry# <?php echo $i?></p>
 			<input type="text" <?php if($i<3) echo  "class='required'" ?> style="float:left;" name="data[<?php echo $i-1 ?>][0]" value ="<?php echo $v[$i-1][0] ?>" />
 				<div style="float:left;">
-					<input <?php if($i<3) echo  "class='required'" ?> type="radio" value='date' <?php if($v[$i-1][1] == 'date') echo 'checked="checked"' ?> name="data[<?php echo $i-1 ?>][1]" id="" /> 
-					<label for="date[<?php echo $i-1 ?>][1]">Date</label> 
+					<input <?php if($i<3) echo  "class='required'" ?> type="radio" checked="checked" value='date' <?php if($v[$i-1][1] == 'date') echo 'checked="checked"' ?> name="data[<?php echo $i-1 ?>][1]" id="" /> 
+					<label for="date[<?php echo $i-1 ?>][1]">Date (yyyy-dd-mm)</label> 
 					<br/>
 					<input type="radio" value='age' <?php if($v[$i-1][1] == 'age') echo 'checked="checked"' ?>  name="data[<?php echo $i-1 ?>][1]" id="" />
 					<label for="date[<?php echo $i-1 ?>][1]">Age</label>
@@ -61,7 +69,7 @@ $v = array();
 				<div style="clear:both"></div>
 				<input type="text" style="float:left;" name="data[<?php echo $i-1 ?>][2]"  value="<?php echo $v[$i-1][2] ?>"/>
 				<div style="float:left;">
-						<input type="radio" <?php if($v[$i-1][3] == 'kg') echo 'checked="checked"' ?>  name="data[<?php echo $i-1 ?>][3]" value='kg' id="" /> 
+						<input type="radio" <?php if($v[$i-1][3] == 'kg') echo 'checked="checked"' ?>  checked="checked" name="data[<?php echo $i-1 ?>][3]" value='kg' id="" /> 
 						<label for="date[<?php echo $i-1 ?>][3]">Kg</label> 
 						<br/>
 						<input type="radio" <?php if($v[$i-1][3] == 'lb') echo 'checked="checked"' ?>  name="data[<?php echo $i-1 ?>][3]" value='lb' id="" />
@@ -74,7 +82,7 @@ $v = array();
 					<div style="clear:both"></div>
 				<input type="text" style="float:left;" name="data[<?php echo $i-1 ?>][4]"  value="<?php echo $v[$i-1][4] ?>"/>
 					<div style="float:left;">
-						<input type="radio" value='cm' <?php if($v[$i-1][5] == 'cm') echo 'checked="checked"' ?>  name="data[<?php echo $i-1 ?>][5]" id="" /> 
+						<input type="radio" value='cm' <?php if($v[$i-1][5] == 'cm') echo 'checked="checked"' ?> checked="checked"  name="data[<?php echo $i-1 ?>][5]" id="" /> 
 						<label for="date[<?php echo $i-1 ?>][5]">cm</label> 
 						<br/>
 						<input type="radio" value='in' <?php if($v[$i-1][5] == 'in') echo 'checked="checked"' ?>   name="data[<?php echo $i-1 ?>][5]" id="" />
@@ -86,7 +94,7 @@ $v = array();
 					Head Circumference
 					<div style="clear:both"></div>
 					<input type="text" style="float:left;" name="data[<?php echo $i-1 ?>][6]"  value="<?php echo $v[$i-1][6] ?>"/>					<div style="float:left;">
-						<input type="radio" <?php if($v[$i-1][7] == 'cm') echo 'checked="checked"' ?>  value='cm' name="data[<?php echo $i-1 ?>][7]" id="" /> 
+						<input type="radio" <?php if($v[$i-1][7] == 'cm') echo 'checked="checked"' ?>  value='cm' checked="checked" name="data[<?php echo $i-1 ?>][7]" id="" /> 
 						<label for="date[<?php echo $i-1 ?>][7]">cm</label> 
 						<br/>
 						<input type="radio" value='in' <?php if($v[$i-1][7] == 'in') echo 'checked="checked"' ?>  name="data[<?php echo $i-1 ?>][7]" id="" />
@@ -97,11 +105,17 @@ $v = array();
 					
 				<div style="clear:both"></div>
 				
-			</div><!-- end of entries -->
+			</div><!-- end of entry -->
 			<div style="clear:both"></div>
 			
 		<?php endfor; ?>
 		</div><!-- end of entries container -->
+		
+		
+		<p> Add more entry: <input name='more_entries' type="text" value="Number of Entries" onclick='this.value = "";' onblur="if (this.value == '') {this.value = 'Number of Entries';}"  onfocus="if (this.value == 'Number of Entries') {this.value = '';}" />  
+		<input class='cancel' type="submit" name="more_submit" value="Add" id="" />
+		</p>
+		
 			
 			
 		<p>
