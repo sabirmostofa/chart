@@ -93,8 +93,9 @@ class wpGrowthChart {
 			wp_enqueue_style('datepicker', plugins_url('css/ui-lightness/jquery-ui-1.8.16.custom.css', __FILE__));
             if (!(is_admin())) {
                 // wp_enqueue_script('wpvr_boxy_script', plugins_url('/' , __FILE__).'js/boxy/src/javascripts/jquery.boxy.js');
-                wp_enqueue_script('wpgrowth_front_script', plugins_url('/', __FILE__) . 'js/script_front.js');
+                
                 wp_enqueue_script('wpgrowth_validate_script', plugins_url('/', __FILE__) . 'js/jquery.validate.min.js');
+                wp_enqueue_script('wpgrowth_front_script', plugins_url('/', __FILE__) . 'js/script_front.js');
                 wp_localize_script('wpgrowth_front_script', 'wpvrSettings', array(
                     'ajaxurl' => home_url('/').'wp-admin/admin-ajax.php',
                     'pluginurl' => plugins_url('/', __FILE__),

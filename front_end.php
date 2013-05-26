@@ -19,7 +19,7 @@ $v = array();
 	<fieldset>
 		<legend>Validating a complete form</legend>
 		<p>
-		<input id="firstname" value="<?php echo $id  ?>" name="identifier" type="text" />
+		<input id="identifier" value="<?php echo $id  ?>" name="identifier" type="text" />
 			<label for="identifier">Child's identifier *( Name/Nickname.. used in the graph title)</label>
 			
 		</p>
@@ -44,9 +44,9 @@ $v = array();
 <?php for($i=1; $i<4; $i++): ?>		
 			<div class="entries" style="margin-bottom:30px;clear:both">
 			<p>Entry# <?php echo $i?></p>
-			<textarea style="float:left;" name="data[<?php echo $i-1 ?>][0]" id="" cols="10" rows="2"><?php echo $v[$i-1][0] ?></textarea>
+			<input type="text" <?php if($i<3) echo  "class='required'" ?> style="float:left;" name="data[<?php echo $i-1 ?>][0]" value ="<?php echo $v[$i-1][0] ?>" />
 				<div style="float:left;">
-					<input type="radio" value='date' <?php if($v[$i-1][1] == 'date') echo 'checked="checked"' ?> name="data[<?php echo $i-1 ?>][1]" id="" /> 
+					<input <?php if($i<3) echo  "class='required'" ?> type="radio" value='date' <?php if($v[$i-1][1] == 'date') echo 'checked="checked"' ?> name="data[<?php echo $i-1 ?>][1]" id="" /> 
 					<label for="date[<?php echo $i-1 ?>][1]">Date</label> 
 					<br/>
 					<input type="radio" value='age' <?php if($v[$i-1][1] == 'age') echo 'checked="checked"' ?>  name="data[<?php echo $i-1 ?>][1]" id="" />
@@ -59,7 +59,7 @@ $v = array();
 			<div style="float:left">
 				Weight
 				<div style="clear:both"></div>
-				<textarea style="float:left;" name="data[<?php echo $i-1 ?>][2]" id="" cols="10" rows="2"><?php echo $v[$i-1][2] ?></textarea>
+				<input type="text" style="float:left;" name="data[<?php echo $i-1 ?>][2]"  value="<?php echo $v[$i-1][2] ?>"/>
 				<div style="float:left;">
 						<input type="radio" <?php if($v[$i-1][3] == 'kg') echo 'checked="checked"' ?>  name="data[<?php echo $i-1 ?>][3]" value='kg' id="" /> 
 						<label for="date[<?php echo $i-1 ?>][3]">Kg</label> 
@@ -72,7 +72,7 @@ $v = array();
 				<div style="float:left;margin-left:20px">
 					Height
 					<div style="clear:both"></div>
-					<textarea style="float:left;" name="data[<?php echo $i-1 ?>][4]" id="" cols="10" rows="2"><?php echo $v[$i-1][4] ?></textarea>
+				<input type="text" style="float:left;" name="data[<?php echo $i-1 ?>][4]"  value="<?php echo $v[$i-1][4] ?>"/>
 					<div style="float:left;">
 						<input type="radio" value='cm' <?php if($v[$i-1][5] == 'cm') echo 'checked="checked"' ?>  name="data[<?php echo $i-1 ?>][5]" id="" /> 
 						<label for="date[<?php echo $i-1 ?>][5]">cm</label> 
@@ -85,8 +85,7 @@ $v = array();
 				<div style="float:left;margin-left:20px">
 					Head Circumference
 					<div style="clear:both"></div>
-					<textarea style="float:left;" name="data[<?php echo $i-1 ?>][6]" id="" cols="10" rows="2"><?php echo $v[$i-1][6] ?></textarea>
-					<div style="float:left;">
+					<input type="text" style="float:left;" name="data[<?php echo $i-1 ?>][6]"  value="<?php echo $v[$i-1][6] ?>"/>					<div style="float:left;">
 						<input type="radio" <?php if($v[$i-1][7] == 'cm') echo 'checked="checked"' ?>  value='cm' name="data[<?php echo $i-1 ?>][7]" id="" /> 
 						<label for="date[<?php echo $i-1 ?>][7]">cm</label> 
 						<br/>

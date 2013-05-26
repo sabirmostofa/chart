@@ -1,4 +1,7 @@
-
+#entries_container input[type=text]{
+line-height:2em;
+width: 80px;
+}
 #mem_output{
 padding: 20px 0 20px 0;
 }
