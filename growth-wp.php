@@ -154,6 +154,16 @@ return $f;
 	
 }
 
+// make dataset for the graph
+
+function build_dataset($data){
+	
+	foreach($data as $d){
+		
+	}
+	
+	}
+
 
 
 

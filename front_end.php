@@ -8,6 +8,7 @@ if( isset($_POST['growth_submit']) || isset($_POST['more_submit']) ){
 	$gd =$_POST['gender'];;
 	$more = (int) $_POST['more_entries'];
 	$entries = count($v)+1;
+	$this->build_dataset($_POST['data']);
 
 }
 else {
