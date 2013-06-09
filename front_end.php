@@ -1,4 +1,6 @@
 <?php
+$mobile =false;
+$tablet =false;
 //$c=<<<EOD
 if( isset($_POST['growth_submit']) || isset($_POST['more_submit']) ){
 	var_dump($_POST);
@@ -20,6 +22,19 @@ $v = array();
 	$entries = 4;
 }
 
+
+include 'Mobile_Detect.php';
+$device = new Mobile_Detect();
+if($device->isMobile())
+	$mobile=true;
+if($device->isTablet())
+	$tablet=true;
+	
+	
+		
+
+
+var_dump($mobile);
 $files = $this->list_files();
 	
 ?>
